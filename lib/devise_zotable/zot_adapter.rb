@@ -23,6 +23,22 @@ module Devise
       end
     end
 
+    def self.valid_token?(token)
+      tokenUri = URI.parse("http://#{Devise.zot_server}/#{Devise.zot_token_relative_url}")
+      response = Net::HTTP.post_form(tokenUri, {:token => token})
+      parsed = JSON.parse(response.body)
+      if parsed['status'].to_i == 1
+        true
+      else
+        false
+      end
+    end
+
+    def self.profile_info(token)
+      tokenUri = URI.parse("http://#{Devise.zot_server}/#{Devise.zot_token_relative_url}")
+      response = Net::HTTP.post_form(tokenUri, {:token => token})
+      return JSON.parse(response.body)
+    end
   end
 
 end

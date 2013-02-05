@@ -25,6 +25,9 @@ module Devise
 
   mattr_accessor :zot_logout_relative_url
   @@zot_logout_relative_url = "/auth/index.php/api/singlesignout"
+
+  mattr_accessor :zot_token_relative_url
+  @@zot_token_relative_url = "/auth/index.php/api/token"
 end
 
 # Add +:zot_authenticatable+ strategy to defaults.

@@ -39,6 +39,14 @@ module Devise
       def after_zot_authentication
       end
 
+      def valid_token?(token)
+        return Devise::ZotAdapter.valid_token?(token)
+      end
+
+      def profile_info(token)
+        return Devise::ZotAdapter.profile_info(token)
+      end
+
     protected
 
       module ClassMethods
