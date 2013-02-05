@@ -19,6 +19,8 @@ module Devise
 
   mattr_accessor :zot_auth_entity
   @@zot_auth_entity = :email
+
+  @@zot_auth_relative_url = "/auth/index.php/site/login"
 end
 
 # Add +:zot_authenticatable+ strategy to defaults.

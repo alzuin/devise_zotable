@@ -15,6 +15,7 @@ if Devise::VERSION < "2.1"
         default = options[:default] || ""
 
         apply_schema :email, String, :null => null, :default => default
+        apply_schema :token, String, :null => true, :default => default
       end
 
     end
