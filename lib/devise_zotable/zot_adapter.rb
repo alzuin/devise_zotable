@@ -14,7 +14,7 @@ module Devise
       response = Net::HTTP.post_form(uri, {:username => username, :password => password, :service => service})
       parsed = JSON.parse(response)
       if parsed['status'].to_i == 1
-        parsed['token']
+        true
       else
         false
       end
