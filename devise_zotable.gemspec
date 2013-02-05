@@ -4,39 +4,38 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{devise_imapable}
-  s.version = "0.5.1"
+  s.name = %q{devise_zotable}
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Josh Kalderimis", "Louis St-Amour"]
-  s.date = %q{2010-04-08}
-  s.description = %q{For when you don't have access to LDAP}
-  s.email = %q{josh.kalderimis@gmail.com}
+  s.authors = ["Alberto Zuin"]
+  s.date = %q{2013-02-05}
+  s.description = %q{For using Massimo's authentication system}
+  s.email = %q{alberto@azns.it}
   s.extra_rdoc_files = [
     "README.md"
   ]
   s.files = [
-    "MIT-LICENSE",
      "README.md",
      "Rakefile",
      "VERSION",
-     "devise_imapable.gemspec",
-     "lib/devise_imapable.rb",
-     "lib/devise_imapable/imap_adapter.rb",
-     "lib/devise_imapable/model.rb",
-     "lib/devise_imapable/schema.rb",
-     "lib/devise_imapable/strategy.rb",
+     "devise_zotable.gemspec",
+     "lib/devise_zotable.rb",
+     "lib/devise_zotable/zot_adapter.rb",
+     "lib/devise_zotable/model.rb",
+     "lib/devise_zotable/schema.rb",
+     "lib/devise_zotable/strategy.rb",
      "rails/init.rb",
-     "test/devise_imapable_test.rb",
+     "test/devise_zotable_test.rb",
      "test/test_helper.rb"
   ]
-  s.homepage = %q{http://github.com/joshk/devise_imapable}
+  s.homepage = %q{http://62.77.32.240:6380/alzuin/devise_zotable}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6}
-  s.summary = %q{Devise Imap authentication module}
+  s.summary = %q{Devise Zotsell authentication module}
   s.test_files = [
-    "test/devise_imapable_test.rb",
+    "test/devise_zotable_test.rb",
      "test/test_helper.rb"
   ]
 

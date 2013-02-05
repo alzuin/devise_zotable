@@ -3,12 +3,12 @@ require 'devise/strategies/authenticatable'
 module Devise
   module Strategies
     # Strategy for signing in a user based on his email and password using imap.
-    class ImapAuthenticatable < Authenticatable
+    class ZotAuthenticatable < Authenticatable
       def authenticate!
-        resource = mapping.to.find_for_imap_authentication(authentication_hash)
+        resource = mapping.to.find_for_zot_authentication(authentication_hash)
 
         if validate(resource){ resource.valid_password?(password) }
-          resource.after_imap_authentication
+          resource.after_zot_authentication
           success!(resource)
         else
           fail(:invalid)
@@ -18,4 +18,4 @@ module Devise
   end
 end
 
-Warden::Strategies.add(:imap_authenticatable, Devise::Strategies::ImapAuthenticatable)
+Warden::Strategies.add(:zot_authenticatable, Devise::Strategies::ZotAuthenticatable)

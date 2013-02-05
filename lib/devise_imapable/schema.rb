@@ -10,7 +10,7 @@ if Devise::VERSION < "2.1"
       # == Options
       # * :null - When true, allow columns to be null.
       # * :default - Should be set to "" when :null is false.
-      def imap_authenticatable(options={})
+      def zot_authenticatable(options={})
         null = options[:null] || false
         default = options[:default] || ""
 

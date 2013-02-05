@@ -1,9 +1,9 @@
-Devise - Imapable
+Devise - Zotable
 =================
 
-Devise-Imapable is a imap based authentication strategy for the [Devise](http://github.com/plataformatec/devise) authentication framework.
+Devise-Zotable is a custom authentication strategy for the [Devise](http://github.com/plataformatec/devise) authentication framework.
 
-If you are building applications for use within your organisation which require authentication and don't have access to a LDAP server, using imap can be a great alternative.
+Zotsell Authentication system is a custom platform made by Massimo which use HTTP Post/JSON to provide authentication information
 
 Installation
 ------------
@@ -12,7 +12,7 @@ Installation
 
 To install, add the following to your Gemfile:
 
-    gem 'devise_imapable', :git => 'git://github.com/LouisStAmour/devise_imapable.git'
+    gem 'devise_zotable', :git => 'git@62.77.32.240:alzuin/devise_zotable.git'
 
 **And don't forget to add [Devise](http://github.com/plataformatec/devise)!**
 
@@ -24,7 +24,7 @@ e.g.
 Setup
 -----
 
-Once devise-imapable is installed, all you need to do is setup the user model which includes a small addition to the model itself and to the schema.
+Once devise-zotable is installed, all you need to do is setup the user model which includes a small addition to the model itself and to the schema.
 
 First the schema :
 
@@ -46,7 +46,7 @@ then finally the model :
 
     class User < ActiveRecord::Base
 
-      devise :rememberable, :trackable, :timeoutable, :imap_authenticatable
+      devise :rememberable, :trackable, :timeoutable, :zot_authenticatable
 
       # Setup accessible (or protected) attributes for your model
       attr_accessible :email, :password, :remember_me
@@ -54,13 +54,13 @@ then finally the model :
       ...
     end
 
-I recommend using :rememberable, :trackable, :timeoutable along with :imap_authenticatable as it gives a full feature set for logins.
+I recommend using :rememberable, :trackable, :timeoutable along with :zot_authenticatable as it gives a full feature set for logins.
 
 
 Usage
 -----
 
-Devise-Imapable works in replacement of Authenticatable, allowing for user name (or email) and password authentication. The standard sign\_in routes and views work out of the box as these are just reused from devise. I recommend you run :
+Devise-Zotable works in replacement of Authenticatable, allowing for user name (or email) and password authentication. The standard sign\_in routes and views work out of the box as these are just reused from devise. I recommend you run :
 
     script/generate devise_views
 
@@ -80,19 +80,19 @@ In initializer  `config/initializers/devise.rb` :
 
     Devise.setup do |config|
       # ...
-      config.imap_server = 'bigcorporation.com'
-      config.default_email_suffix = 'friendly-corporation.com'
+      config.zot_server = 'massimo.sviluppo.trade-services.it'
+      config.default_email_suffix = 'social.zotsell.it'
       # ...
     end
 
-Imap servers usually allow a user to login using their full email address or just the identifier part, eg: josh.kalderimis and josh.kalderimis@gmail.com will both work. It is recommend that you set the default\_email\_suffix so the login is kept consistent and the users email is correctly stored in the User model.
+Zot servers usually allow a user to login using their full email address or just the identifier part, eg: josh.kalderimis and josh.kalderimis@gmail.com will both work. It is recommend that you set the default\_email\_suffix so the login is kept consistent and the users email is correctly stored in the User model.
 
 So remember ...
 ---------------
 
 - don't use Authenticatable
 
-- add imap\_server and default\_email\_suffix settings in the devise initializer
+- add zot\_server and default\_email\_suffix settings in the devise initializer
 
 - generate the devise views and make them pretty
 
@@ -115,7 +115,7 @@ TODO
 
 - assert Authenticatable is not being used
 
-- assert imap\_server is present, and warn if default\_email\_suffix isn't present
+- assert zot\_server is present, and warn if default\_email\_suffix isn't present
 
 - tests, tests, tests
 
@@ -125,6 +125,4 @@ TODO
 
 
 
-Released under the MIT license
-
-Copyright (c) 2010 Josh Kalderimis,
+Copyright (c) 2013 Alberto Zuin,
