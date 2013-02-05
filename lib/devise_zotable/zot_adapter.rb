@@ -9,7 +9,7 @@ module Devise
   module ZotAdapter
 
     def self.valid_credentials?(username, password, service=nil)
-      uri = URI.parse("http://#{Devise.zot_server}/#{@@zot_auth_relative_url}")
+      uri = URI.parse("http://#{Devise.zot_server}/#{Devise.zot_auth_relative_url}")
 
       response = Net::HTTP.post_form(uri, {:username => username, :password => password, :service => service})
       parsed = JSON.parse(response)
