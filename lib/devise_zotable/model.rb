@@ -20,6 +20,7 @@ module Devise
       def valid_password?(incoming_password)
         valid = Devise::ZotAdapter.valid_credentials?(self.send(Devise.zot_auth_entity), incoming_password)
         if valid && new_record? # Create this record if valid.
+          token=valid
           create
         end
         return valid

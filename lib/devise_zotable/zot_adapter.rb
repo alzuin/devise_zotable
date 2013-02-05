@@ -17,7 +17,7 @@ module Devise
       if parsed['status'].to_i == 1
         Net::HTTP.post_form(logoutUri, {:token => parsed['token']})
         # true
-        response
+        parsed['token']
       else
         false
       end
