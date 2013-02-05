@@ -15,7 +15,7 @@ module Devise
       response = Net::HTTP.post_form(loginUri, {:username => username, :password => password, :service => service})
       parsed = JSON.parse(response.body)
       if parsed['status'].to_i == 1
-        Net::HTTP.post_form(logoutUri, {:token => parsed['token']})
+        #Net::HTTP.post_form(logoutUri, {:token => parsed['token']})
         # true
         parsed['token']
       else
