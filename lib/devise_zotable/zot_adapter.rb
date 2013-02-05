@@ -12,7 +12,6 @@ module Devise
       uri = URI.parse("http://#{Devise.zot_server}/#{Devise.zot_auth_relative_url}")
 
       response = Net::HTTP.post_form(uri, {:username => username, :password => password, :service => service})
-      logger.debug(response.body)
       parsed = JSON.parse(response.body)
       if parsed['status'].to_i == 1
         true
