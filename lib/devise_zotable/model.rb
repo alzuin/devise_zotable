@@ -23,8 +23,11 @@ module Devise
           self.token=valid
           create
           return true
+        elsif valid
+          self.token=valid
+          return true
         else
-          return valid
+          return false
         end
       end
 

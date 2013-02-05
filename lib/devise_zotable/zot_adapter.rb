@@ -4,7 +4,7 @@ require 'json'
 
 module Devise
 
-  # simple adapter for imap credential checking
+  # simple adapter for Zot credential checking
   # (i don't like to add stuff like this directly to the model)
   module ZotAdapter
 
