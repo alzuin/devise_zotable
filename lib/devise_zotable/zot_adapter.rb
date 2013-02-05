@@ -36,7 +36,7 @@ module Devise
 
     def self.profile_info(token)
       tokenUri = URI.parse("http://#{Devise.zot_server}/#{Devise.zot_token_relative_url}")
-      response = Net::HTTP.post_form(tokenUri, {:token => token})
+      response = Net::HTTP.post_form(tokenUri, {:token => token, :profile => true })
       return JSON.parse(response.body)
     end
   end
