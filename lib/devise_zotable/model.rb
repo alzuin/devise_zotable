@@ -40,15 +40,15 @@ module Devise
       end
 
       def valid_token? #(token)
-        return Devise::ZotAdapter.valid_token? #(token)
+        return Devise::ZotAdapter.valid_token?(token)
       end
 
       def profile_info #(token)
-        return Devise::ZotAdapter.profile_info #(token)
+        return Devise::ZotAdapter.profile_info(token)
       end
 
       def destroy_token #(token)
-        return Devise::ZotAdapter.destroy_token #(token)
+        return Devise::ZotAdapter.destroy_token(token)
       end
 
     protected
