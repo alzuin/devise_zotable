@@ -21,13 +21,13 @@ module Devise
   @@zot_auth_entity = :email
 
   mattr_accessor :zot_login_relative_url
-  @@zot_login_relative_url = "/auth/index.php/api/login"
+  @@zot_login_relative_url = "/index.php/api/login"
 
   mattr_accessor :zot_logout_relative_url
-  @@zot_logout_relative_url = "/auth/index.php/api/singlesignout"
+  @@zot_logout_relative_url = "/index.php/api/singlesignout"
 
   mattr_accessor :zot_token_relative_url
-  @@zot_token_relative_url = "/auth/index.php/api/token"
+  @@zot_token_relative_url = "/index.php/api/token"
 end
 
 # Add +:zot_authenticatable+ strategy to defaults.
