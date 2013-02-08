@@ -43,7 +43,7 @@ module Devise
         return Devise::ZotAdapter.valid_token?(token)
       end
 
-      def profile_info(token)
+      def profile_info_from_zotauth(token)
         return Devise::ZotAdapter.profile_info(token)
       end
 
