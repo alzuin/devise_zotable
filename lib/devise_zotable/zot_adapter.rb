@@ -10,10 +10,12 @@ module Devise
   module ZotAdapter
 
     def self.valid_credentials?(username, password, service=nil)
-      loginUri = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_login_relative_url}")
-      #http.use_ssl = true
-      #http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      response = Net::HTTP.post_form(loginUri, {:username => username, :password => password, :service => service})
+      url = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_login_relative_url}")
+      req = Net::HTTP::Post.new(url.path)
+      req.use_ssl = true
+      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      req.form_data({:username => username, :password => password, :service => service})
+      response = Net::HTTP.new(loginUri.host, loginUri.port).start {|http| http.request(req) }
       parsed = JSON.parse(response.body)
       if parsed['status'].to_i == 1
         #Net::HTTP.post_form(logoutUri, {:token => parsed['token']})
@@ -25,8 +27,12 @@ module Devise
     end
 
     def self.valid_token?(token)
-      tokenUri = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_token_relative_url}")
-      response = Net::HTTP.post_form(tokenUri, {:token => token})
+      url = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_token_relative_url}")
+      req = Net::HTTP::Post.new(url.path)
+      req.use_ssl = true
+      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      req.form_data({:token => token})
+      response = Net::HTTP.new(loginUri.host, loginUri.port).start {|http| http.request(req) }
       parsed = JSON.parse(response.body)
       if parsed['status'].to_i == 1
         true
@@ -36,14 +42,22 @@ module Devise
     end
 
     def self.profile_info(token)
-      tokenUri = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_token_relative_url}")
-      response = Net::HTTP.post_form(tokenUri, {:token => token, :profile => true })
+      url = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_token_relative_url}")
+      req = Net::HTTP::Post.new(url.path)
+      req.use_ssl = true
+      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      req.form_data({:token => token, :profile => true})
+      response = Net::HTTP.new(loginUri.host, loginUri.port).start {|http| http.request(req) }
       return JSON.parse(response.body)
     end
 
     def self.destroy_token(token)
-      logoutUri = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_logout_relative_url}")
-      response = Net::HTTP.post_form(logoutUri, {:token => token})
+      url = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_logout_relative_url}")
+      req = Net::HTTP::Post.new(url.path)
+      req.use_ssl = true
+      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      req.form_data({:token => token})
+      response = Net::HTTP.new(loginUri.host, loginUri.port).start {|http| http.request(req) }
       parsed = JSON.parse(response.body)
       if parsed['status'].to_i == 1
         true
