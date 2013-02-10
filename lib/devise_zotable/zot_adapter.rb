@@ -12,8 +12,8 @@ module Devise
     def self.valid_credentials?(username, password, service=nil)
       url = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_login_relative_url}")
       req = Net::HTTP::Post.new(url.path)
-      req.use_ssl = true
-      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
+#      req.use_ssl = true
+#      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
       req.form_data({:username => username, :password => password, :service => service})
       response = Net::HTTP.new(loginUri.host, loginUri.port).start {|http| http.request(req) }
       parsed = JSON.parse(response.body)
@@ -29,8 +29,8 @@ module Devise
     def self.valid_token?(token)
       url = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_token_relative_url}")
       req = Net::HTTP::Post.new(url.path)
-      req.use_ssl = true
-      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
+#      req.use_ssl = true
+#      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
       req.form_data({:token => token})
       response = Net::HTTP.new(loginUri.host, loginUri.port).start {|http| http.request(req) }
       parsed = JSON.parse(response.body)
@@ -43,8 +43,8 @@ module Devise
 
     def self.profile_info(token)
       url = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_token_relative_url}")
-      req = Net::HTTP::Post.new(url.path)
-      req.use_ssl = true
+#      req = Net::HTTP::Post.new(url.path)
+#      req.use_ssl = true
       req.verify_mode = OpenSSL::SSL::VERIFY_NONE
       req.form_data({:token => token, :profile => true})
       response = Net::HTTP.new(loginUri.host, loginUri.port).start {|http| http.request(req) }
@@ -54,8 +54,8 @@ module Devise
     def self.destroy_token(token)
       url = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_logout_relative_url}")
       req = Net::HTTP::Post.new(url.path)
-      req.use_ssl = true
-      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
+#      req.use_ssl = true
+#      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
       req.form_data({:token => token})
       response = Net::HTTP.new(loginUri.host, loginUri.port).start {|http| http.request(req) }
       parsed = JSON.parse(response.body)
