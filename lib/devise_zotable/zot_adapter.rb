@@ -10,7 +10,7 @@ module Devise
   module ZotAdapter
 
     def self.valid_credentials?(username, password, service=nil)
-      url = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_login_relative_url}")
+      url = URI.parse("#{Devise.zot_protocol}://#{Devise.zot_server}/#{Devise.zot_login_relative_url}")
       req = Net::HTTP::Post.new(url.path)
       req.set_form_data({:username => username, :password => password, :service => service})
       sock = Net::HTTP.new(url.host, url.port)
@@ -26,7 +26,7 @@ module Devise
     end
 
     def self.valid_token?(token)
-      url = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_token_relative_url}")
+      url = URI.parse("#{Devise.zot_protocol}://#{Devise.zot_server}/#{Devise.zot_token_relative_url}")
       req = Net::HTTP::Post.new(url.path)
       req.set_form_data({:token => token})
       sock = Net::HTTP.new(url.host, url.port)
@@ -42,7 +42,7 @@ module Devise
     end
 
     def self.profile_info(token)
-      url = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_token_relative_url}")
+      url = URI.parse("#{Devise.zot_protocol}://#{Devise.zot_server}/#{Devise.zot_token_relative_url}")
       req = Net::HTTP::Post.new(url.path)
       req.set_form_data({:token => token, :profile => true})
       sock = Net::HTTP.new(url.host, url.port)
@@ -53,7 +53,7 @@ module Devise
     end
 
     def self.destroy_token(token)
-      url = URI.parse("https://#{Devise.zot_server}/#{Devise.zot_logout_relative_url}")
+      url = URI.parse("#{Devise.zot_protocol}://#{Devise.zot_server}/#{Devise.zot_logout_relative_url}")
       req = Net::HTTP::Post.new(url.path)
       req.set_form_data({:token => token})
       sock = Net::HTTP.new(url.host, url.port)

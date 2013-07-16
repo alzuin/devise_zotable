@@ -5,7 +5,12 @@ require 'devise_zotable/schema'
 require 'devise_zotable/zot_adapter'
 
 module Devise
-  # imap server address for authentication.
+  # Zot protocol contacting server
+  mattr_accessor :zot_protocol
+  @@zot_protocol = 'https'
+
+
+  # Zot server address for authentication.
   mattr_accessor :zot_server
   @@zot_server = nil
 
