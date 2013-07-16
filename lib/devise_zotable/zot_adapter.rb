@@ -14,8 +14,10 @@ module Devise
       req = Net::HTTP::Post.new(url.path)
       req.set_form_data({:username => username, :password => password, :service => service})
       sock = Net::HTTP.new(url.host, url.port)
-      sock.use_ssl = true
-      sock.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      if Devise.zot_protocol=='https'
+        sock.use_ssl = true
+        sock.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      end
       response=sock.start {|http| http.request(req) }
       parsed = JSON.parse(response.body)
       if parsed['status'].to_i == 1
@@ -30,8 +32,10 @@ module Devise
       req = Net::HTTP::Post.new(url.path)
       req.set_form_data({:token => token})
       sock = Net::HTTP.new(url.host, url.port)
-      sock.use_ssl = true
-      sock.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      if Devise.zot_protocol=='https'
+        sock.use_ssl = true
+        sock.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      end
       response=sock.start {|http| http.request(req) }
       parsed = JSON.parse(response.body)
       if parsed['status'].to_i == 1
@@ -46,8 +50,10 @@ module Devise
       req = Net::HTTP::Post.new(url.path)
       req.set_form_data({:token => token, :profile => true})
       sock = Net::HTTP.new(url.host, url.port)
-      sock.use_ssl = true
-      sock.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      if Devise.zot_protocol=='https'
+        sock.use_ssl = true
+        sock.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      end
       response=sock.start {|http| http.request(req) }
       return JSON.parse(response.body)
     end
@@ -57,8 +63,10 @@ module Devise
       req = Net::HTTP::Post.new(url.path)
       req.set_form_data({:token => token})
       sock = Net::HTTP.new(url.host, url.port)
-      sock.use_ssl = true
-      sock.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      if Devise.zot_protocol=='https'
+        sock.use_ssl = true
+        sock.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      end
       response=sock.start {|http| http.request(req) }
       parsed = JSON.parse(response.body)
       if parsed['status'].to_i == 1
